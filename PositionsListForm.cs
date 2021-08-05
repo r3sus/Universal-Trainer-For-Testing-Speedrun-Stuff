@@ -42,7 +42,15 @@ namespace Flying47
 
 		private void B_Add_Click(object sender, EventArgs e)
 		{
-			var rowID = this.positionGrid.Rows.Add(1);
+			//var rowID = this.positionGrid.Rows.Add(1);
+			
+			int rowID=0;
+			if (positionGrid.SelectedCells.Count>0) {
+			rowID = Math.Min(this.positionGrid.SelectedCells[0].RowIndex+1,positionGrid.RowCount-1);
+			this.positionGrid.Rows.Insert(rowID,1);
+			}
+			else rowID = this.positionGrid.Rows.Add(1);
+			
 			positionGrid[0, rowID].Value = "";
 			positionGrid["X", rowID].Value = parent.storedCoordinates.X.ToString();
 			positionGrid["Y", rowID].Value = parent.storedCoordinates.Y.ToString();
