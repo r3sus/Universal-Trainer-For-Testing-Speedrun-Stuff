@@ -34,6 +34,7 @@
         	this.LB_Running = new System.Windows.Forms.Label();
         	this.InputPanel = new System.Windows.Forms.Panel();
         	this.KeyPanel = new System.Windows.Forms.Panel();
+        	this.cbND = new System.Windows.Forms.CheckBox();
         	this.CB_CheckActiveWindow = new System.Windows.Forms.CheckBox();
         	this.B_SaveProgramConfig = new System.Windows.Forms.Button();
         	this.TB_MoveZAxis = new System.Windows.Forms.TextBox();
@@ -69,7 +70,6 @@
         	this.githubRepositoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.teleportListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.cbND = new System.Windows.Forms.CheckBox();
         	this.InputPanel.SuspendLayout();
         	this.KeyPanel.SuspendLayout();
         	this.panel1.SuspendLayout();
@@ -126,6 +126,17 @@
         	this.KeyPanel.Name = "KeyPanel";
         	this.KeyPanel.Size = new System.Drawing.Size(380, 121);
         	this.KeyPanel.TabIndex = 41;
+        	// 
+        	// cbND
+        	// 
+        	this.cbND.Checked = true;
+        	this.cbND.CheckState = System.Windows.Forms.CheckState.Checked;
+        	this.cbND.Location = new System.Drawing.Point(251, 91);
+        	this.cbND.Name = "cbND";
+        	this.cbND.Size = new System.Drawing.Size(122, 32);
+        	this.cbND.TabIndex = 62;
+        	this.cbND.Text = "Table not blocks main window (Test)";
+        	this.cbND.UseVisualStyleBackColor = true;
         	// 
         	// CB_CheckActiveWindow
         	// 
@@ -322,7 +333,7 @@
         	this.tableLayoutPanel1.ColumnCount = 3;
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-        	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+        	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
         	this.tableLayoutPanel1.Controls.Add(this.L_Z, 2, 1);
         	this.tableLayoutPanel1.Controls.Add(this.L_Y, 1, 1);
         	this.tableLayoutPanel1.Controls.Add(this.label5, 2, 0);
@@ -334,7 +345,7 @@
         	this.tableLayoutPanel1.RowCount = 2;
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-        	this.tableLayoutPanel1.Size = new System.Drawing.Size(341, 63);
+        	this.tableLayoutPanel1.Size = new System.Drawing.Size(350, 63);
         	this.tableLayoutPanel1.TabIndex = 2;
         	// 
         	// L_Z
@@ -430,65 +441,56 @@
 			this.githubRepositoryToolStripMenuItem,
 			this.exitToolStripMenuItem});
         	this.mainToolStripMenuItem.Name = "mainToolStripMenuItem";
-        	this.mainToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+        	this.mainToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
         	this.mainToolStripMenuItem.Text = "Main";
         	// 
         	// loadOtherConfigToolStripMenuItem
         	// 
         	this.loadOtherConfigToolStripMenuItem.Name = "loadOtherConfigToolStripMenuItem";
-        	this.loadOtherConfigToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+        	this.loadOtherConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.loadOtherConfigToolStripMenuItem.Text = "Load game config";
         	this.loadOtherConfigToolStripMenuItem.Click += new System.EventHandler(this.LoadOtherConfigToolStripMenuItem_Click);
         	// 
         	// reloadConfigToolStripMenuItem
         	// 
         	this.reloadConfigToolStripMenuItem.Name = "reloadConfigToolStripMenuItem";
-        	this.reloadConfigToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+        	this.reloadConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.reloadConfigToolStripMenuItem.Text = "Reload game config";
         	this.reloadConfigToolStripMenuItem.Click += new System.EventHandler(this.ReloadConfigToolStripMenuItem_Click);
         	// 
         	// toolStripSeparator1
         	// 
         	this.toolStripSeparator1.Name = "toolStripSeparator1";
-        	this.toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
+        	this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
         	// 
         	// alwaysOnTopToolStripMenuItem
         	// 
         	this.alwaysOnTopToolStripMenuItem.CheckOnClick = true;
         	this.alwaysOnTopToolStripMenuItem.Name = "alwaysOnTopToolStripMenuItem";
-        	this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+        	this.alwaysOnTopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.alwaysOnTopToolStripMenuItem.Text = "Always on top";
         	this.alwaysOnTopToolStripMenuItem.CheckedChanged += new System.EventHandler(this.AlwaysOnTopToolStripMenuItem_CheckedChanged);
         	// 
         	// githubRepositoryToolStripMenuItem
         	// 
         	this.githubRepositoryToolStripMenuItem.Name = "githubRepositoryToolStripMenuItem";
-        	this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+        	this.githubRepositoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.githubRepositoryToolStripMenuItem.Text = "Github repository";
         	this.githubRepositoryToolStripMenuItem.Click += new System.EventHandler(this.GithubRepositoryToolStripMenuItem_Click);
         	// 
         	// exitToolStripMenuItem
         	// 
         	this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-        	this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+        	this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
         	this.exitToolStripMenuItem.Text = "Exit";
         	this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
         	// 
         	// teleportListToolStripMenuItem
         	// 
         	this.teleportListToolStripMenuItem.Name = "teleportListToolStripMenuItem";
-        	this.teleportListToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+        	this.teleportListToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
         	this.teleportListToolStripMenuItem.Text = "Teleport list";
         	this.teleportListToolStripMenuItem.Click += new System.EventHandler(this.TeleportListToolStripMenuItem_Click);
-        	// 
-        	// cbND
-        	// 
-        	this.cbND.Location = new System.Drawing.Point(251, 91);
-        	this.cbND.Name = "cbND";
-        	this.cbND.Size = new System.Drawing.Size(122, 32);
-        	this.cbND.TabIndex = 62;
-        	this.cbND.Text = "Table not blocks main window (Test)";
-        	this.cbND.UseVisualStyleBackColor = true;
         	// 
         	// MainForm
         	// 

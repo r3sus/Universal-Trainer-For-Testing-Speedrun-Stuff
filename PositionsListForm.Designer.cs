@@ -36,6 +36,8 @@
         	this.B_Add = new System.Windows.Forms.Button();
         	this.B_LoadTable = new System.Windows.Forms.Button();
         	this.B_TeleportTo = new System.Windows.Forms.Button();
+        	this.cbSAS = new System.Windows.Forms.CheckBox();
+        	this.comboBox1 = new System.Windows.Forms.ComboBox();
         	this.positionGrid = new System.Windows.Forms.DataGridView();
         	this.PosName = new System.Windows.Forms.DataGridViewTextBoxColumn();
         	this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,7 +47,6 @@
         	this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-        	this.cbSAS = new System.Windows.Forms.CheckBox();
         	this.tableLayoutPanel2.SuspendLayout();
         	this.tableLayoutPanel1.SuspendLayout();
         	((System.ComponentModel.ISupportInitialize)(this.positionGrid)).BeginInit();
@@ -65,40 +66,42 @@
         	this.tableLayoutPanel2.RowCount = 1;
         	this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
         	this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-        	this.tableLayoutPanel2.Size = new System.Drawing.Size(800, 450);
+        	this.tableLayoutPanel2.Size = new System.Drawing.Size(576, 450);
         	this.tableLayoutPanel2.TabIndex = 1;
         	// 
         	// tableLayoutPanel1
         	// 
         	this.tableLayoutPanel1.ColumnCount = 1;
         	this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-        	this.tableLayoutPanel1.Controls.Add(this.B_SaveTable, 0, 5);
+        	this.tableLayoutPanel1.Controls.Add(this.B_SaveTable, 0, 6);
         	this.tableLayoutPanel1.Controls.Add(this.B_RemoveEntry, 0, 1);
         	this.tableLayoutPanel1.Controls.Add(this.B_Add, 0, 0);
+        	this.tableLayoutPanel1.Controls.Add(this.B_LoadTable, 0, 5);
         	this.tableLayoutPanel1.Controls.Add(this.B_TeleportTo, 0, 2);
-        	this.tableLayoutPanel1.Controls.Add(this.B_LoadTable, 0, 4);
-        	this.tableLayoutPanel1.Controls.Add(this.cbSAS, 0, 3);
+        	this.tableLayoutPanel1.Controls.Add(this.cbSAS, 0, 7);
+        	this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 3);
         	this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-        	this.tableLayoutPanel1.Location = new System.Drawing.Point(683, 3);
+        	this.tableLayoutPanel1.Location = new System.Drawing.Point(459, 3);
         	this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-        	this.tableLayoutPanel1.RowCount = 6;
+        	this.tableLayoutPanel1.RowCount = 8;
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+        	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
         	this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
         	this.tableLayoutPanel1.Size = new System.Drawing.Size(114, 444);
         	this.tableLayoutPanel1.TabIndex = 0;
-        	this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.TableLayoutPanel1Paint);
         	// 
         	// B_SaveTable
         	// 
         	this.B_SaveTable.Anchor = System.Windows.Forms.AnchorStyles.None;
-        	this.B_SaveTable.Location = new System.Drawing.Point(10, 416);
+        	this.B_SaveTable.Location = new System.Drawing.Point(10, 395);
         	this.B_SaveTable.Name = "B_SaveTable";
-        	this.B_SaveTable.Size = new System.Drawing.Size(94, 23);
+        	this.B_SaveTable.Size = new System.Drawing.Size(94, 21);
         	this.B_SaveTable.TabIndex = 3;
         	this.B_SaveTable.Text = "Save Table";
         	this.B_SaveTable.UseVisualStyleBackColor = true;
@@ -129,7 +132,7 @@
         	// B_LoadTable
         	// 
         	this.B_LoadTable.Anchor = System.Windows.Forms.AnchorStyles.None;
-        	this.B_LoadTable.Location = new System.Drawing.Point(10, 384);
+        	this.B_LoadTable.Location = new System.Drawing.Point(10, 364);
         	this.B_LoadTable.Name = "B_LoadTable";
         	this.B_LoadTable.Size = new System.Drawing.Size(94, 23);
         	this.B_LoadTable.TabIndex = 2;
@@ -148,6 +151,29 @@
         	this.B_TeleportTo.UseVisualStyleBackColor = true;
         	this.B_TeleportTo.Click += new System.EventHandler(this.B_TeleportTo_Click);
         	// 
+        	// cbSAS
+        	// 
+        	this.cbSAS.Location = new System.Drawing.Point(3, 422);
+        	this.cbSAS.Name = "cbSAS";
+        	this.cbSAS.Size = new System.Drawing.Size(104, 19);
+        	this.cbSAS.TabIndex = 5;
+        	this.cbSAS.Text = "Save As";
+        	this.cbSAS.UseVisualStyleBackColor = true;
+        	// 
+        	// comboBox1
+        	// 
+        	this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        	this.comboBox1.FormattingEnabled = true;
+        	this.comboBox1.Items.AddRange(new object[] {
+			"No Dock",
+			"Right",
+			"Bottom"});
+        	this.comboBox1.Location = new System.Drawing.Point(3, 115);
+        	this.comboBox1.Name = "comboBox1";
+        	this.comboBox1.Size = new System.Drawing.Size(108, 21);
+        	this.comboBox1.TabIndex = 7;
+        	this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.PositionsListForm_Move);
+        	// 
         	// positionGrid
         	// 
         	this.positionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -159,9 +185,8 @@
         	this.positionGrid.ContextMenuStrip = this.ContextMenu_DataGrid;
         	this.positionGrid.Dock = System.Windows.Forms.DockStyle.Fill;
         	this.positionGrid.Location = new System.Drawing.Point(3, 3);
-        	this.positionGrid.MultiSelect = false;
         	this.positionGrid.Name = "positionGrid";
-        	this.positionGrid.Size = new System.Drawing.Size(674, 444);
+        	this.positionGrid.Size = new System.Drawing.Size(450, 444);
         	this.positionGrid.TabIndex = 1;
         	this.positionGrid.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.PositionGrid_CellBeginEdit);
         	this.positionGrid.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.PositionGrid_CellEndEdit);
@@ -195,48 +220,39 @@
 			this.removeToolStripMenuItem,
 			this.cancelToolStripMenuItem});
         	this.ContextMenu_DataGrid.Name = "ContextMenu_DataGrid";
-        	this.ContextMenu_DataGrid.Size = new System.Drawing.Size(114, 70);
+        	this.ContextMenu_DataGrid.Size = new System.Drawing.Size(118, 70);
         	// 
         	// addToolStripMenuItem
         	// 
         	this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-        	this.addToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+        	this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
         	this.addToolStripMenuItem.Text = "Add";
         	this.addToolStripMenuItem.Click += new System.EventHandler(this.B_Add_Click);
         	// 
         	// removeToolStripMenuItem
         	// 
         	this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-        	this.removeToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+        	this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
         	this.removeToolStripMenuItem.Text = "Remove";
         	this.removeToolStripMenuItem.Click += new System.EventHandler(this.B_RemoveEntry_Click);
         	// 
         	// cancelToolStripMenuItem
         	// 
         	this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-        	this.cancelToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+        	this.cancelToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
         	this.cancelToolStripMenuItem.Text = "Cancel";
-        	// 
-        	// cbSAS
-        	// 
-        	this.cbSAS.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-        	this.cbSAS.Location = new System.Drawing.Point(5, 353);
-        	this.cbSAS.Name = "cbSAS";
-        	this.cbSAS.Size = new System.Drawing.Size(104, 24);
-        	this.cbSAS.TabIndex = 5;
-        	this.cbSAS.Text = "Save As";
-        	this.cbSAS.UseVisualStyleBackColor = true;
         	// 
         	// PositionsListForm
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.ClientSize = new System.Drawing.Size(800, 450);
+        	this.ClientSize = new System.Drawing.Size(576, 450);
         	this.Controls.Add(this.tableLayoutPanel2);
         	this.Name = "PositionsListForm";
         	this.Text = "List of Positions";
         	this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PositionsListForm_FormClosing);
         	this.Load += new System.EventHandler(this.PositionsListForm_Load);
+        	this.Move += new System.EventHandler(this.PositionsListForm_Move);
         	this.tableLayoutPanel2.ResumeLayout(false);
         	this.tableLayoutPanel1.ResumeLayout(false);
         	((System.ComponentModel.ISupportInitialize)(this.positionGrid)).EndInit();
@@ -264,5 +280,6 @@
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
         private System.Windows.Forms.CheckBox cbSAS;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

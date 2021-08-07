@@ -156,9 +156,9 @@ namespace Flying47
 
 					positionAddress.ReadSet(myProcess, out readCoordX, out readCoordY, out readCoordZ);
 					var test = Trainer.ReadPointerInteger(myProcess, positionAddress.X);
-					L_X.Text = readCoordX.ToString();
-					L_Y.Text = readCoordY.ToString();
-					L_Z.Text = readCoordZ.ToString();
+					L_X.Text = readCoordX.ToString("0.00");
+					L_Y.Text = readCoordY.ToString("0.00");
+					L_Z.Text = readCoordZ.ToString("0.00");
 					if (AnglesEnabled)
 					{
 						readSinAlpha = Trainer.ReadPointerFloat(myProcess, adrSinAlpha);
@@ -403,9 +403,11 @@ namespace Flying47
 			bool tempOnTop = this.TopMost;
 			this.TopMost = false;
 			PositionsListForm posForm = new PositionsListForm(this, ListOfStoredPositions);
+			posForm.Owner = this;
 			if (cbND.Checked) {posForm.Show();} else {posForm.ShowDialog();}
+			posForm.Left = Left + Width;
+			posForm.Top = Top;
 			m_KeyboardHook.KeysEnabled = true;
-
 			this.TopMost = tempOnTop;
 		}
 

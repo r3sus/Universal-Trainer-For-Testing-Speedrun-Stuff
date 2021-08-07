@@ -16,8 +16,25 @@ namespace Flying47
 			this.parent = parent;
 			this.Positions = Positions;
 			InitializeComponent();
+			comboBox1.SelectedIndex =0;
 		}
 
+		private void PositionsListForm_Move(object sender, EventArgs e)
+		{
+			
+			switch(comboBox1.SelectedItem.ToString())
+			{
+				case "Bottom":
+					parent.Left = this.Left;
+					parent.Top = this.Top - parent.Height;
+					break;
+				case "Right":
+					parent.Left = this.Left-parent.Width;
+					parent.Top = this.Top;
+					break;
+			}
+			
+		}
 
 		private void PositionsListForm_Load(object sender, EventArgs e)
 		{
@@ -42,18 +59,15 @@ namespace Flying47
 
 		private void B_Add_Click(object sender, EventArgs e)
 		{
-			//var rowID = this.positionGrid.Rows.Add(1);
-			
 			int rowID=0;
 			if (positionGrid.SelectedCells.Count>0) {
-			rowID = Math.Min(this.positionGrid.SelectedCells[0].RowIndex+1,positionGrid.RowCount-1);
-			this.positionGrid.Rows.Insert(rowID,1);
+				rowID = Math.Min(this.positionGrid.SelectedCells[0].RowIndex+1,positionGrid.RowCount-1);
+				this.positionGrid.Rows.Insert(rowID,1);
 			}
-			else rowID = this.positionGrid.Rows.Add(1);
 			positionGrid[0, rowID].Value = "";
-			positionGrid["X", rowID].Value = parent.storedCoordinates.X.ToString();
-			positionGrid["Y", rowID].Value = parent.storedCoordinates.Y.ToString();
-			positionGrid["Z", rowID].Value = parent.storedCoordinates.Z.ToString();
+			positionGrid["X", rowID].Value = parent.storedCoordinates.X.ToString("0.00");
+			positionGrid["Y", rowID].Value = parent.storedCoordinates.Y.ToString("0.00");
+			positionGrid["Z", rowID].Value = parent.storedCoordinates.Z.ToString("0.00");
 			ContentChanged = true;
 		}
 
@@ -131,14 +145,13 @@ namespace Flying47
 				FileName = parent.processName + ".xpos",
 				Filter = "Stored Position List|*.xpos"
 			};
-			//var result = fd.ShowDialog();
+			
 			string fp = Path.Combine("Stored Lists", parent.processName + ".xpos");
-			bool x; 
+			bool x;
 			x = File.Exists(fp);
-			if (cbSAS.Checked || !x) {x = fd.ShowDialog() == DialogResult.OK; fp = fd.FileName;} 
+			if (cbSAS.Checked || !x) {x = fd.ShowDialog() == DialogResult.OK; fp = fd.FileName;}
 			if (!x) {return;}
 
-			// optimization: choose file first
 			Structs.PositionSets positions = new Structs.PositionSets();
 			for (int i = 0; i < positionGrid.Rows.Count - 1; i++)
 			{
@@ -151,15 +164,10 @@ namespace Flying47
 					return;
 			}
 
-			
-			//positions.Save(fd.FileName);
 			positions.Save(fp);
 			this.Positions = positions;
 			this.parent.ListOfStoredPositions = positions;
 			ContentChanged = false;
-			
-			//MessageBox.Show("saved");
-			
 		}
 
 		private string GetSafeStringValue(DataGridViewCell cellData)
@@ -230,10 +238,6 @@ namespace Flying47
 		private void PositionGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			parent.m_KeyboardHook.KeysEnabled = true;
-		}
-		void TableLayoutPanel1Paint(object sender, PaintEventArgs e)
-		{
-	
 		}
 	}
 }
