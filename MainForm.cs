@@ -69,16 +69,9 @@ namespace Flying47
 
 					if (File.Exists(Path.Combine("Stored Lists", processName + ".xpos")))
 					{
-						DialogResult res = MessageBox.Show("Seems like there is a stored list of positions for current application, do you want to load it?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-						if (res == DialogResult.Yes)
-						{
-							ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
-						}
-						else
-							ListOfStoredPositions = new Structs.PositionSets();
+						ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
 					}
-					else
-						ListOfStoredPositions = new Structs.PositionSets();
+					else ListOfStoredPositions = new Structs.PositionSets();
 
 
 					if (adrSinAlpha.IsNull() || adrCosAlpha.IsNull())
@@ -410,7 +403,7 @@ namespace Flying47
 			bool tempOnTop = this.TopMost;
 			this.TopMost = false;
 			PositionsListForm posForm = new PositionsListForm(this, ListOfStoredPositions);
-			posForm.ShowDialog();
+			if (cbND.Checked) {posForm.Show();} else {posForm.ShowDialog();}
 			m_KeyboardHook.KeysEnabled = true;
 
 			this.TopMost = tempOnTop;
@@ -431,6 +424,13 @@ namespace Flying47
 				TB_MoveXYAxis.Text = moveAmountXYAxis.ToString();
 				TB_MoveZAxis.Text = moveAmountZAxis.ToString();
 			}
+			
+			if (File.Exists(Path.Combine("Stored Lists", processName + ".xpos")))
+			{
+				ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
+			}
+			else ListOfStoredPositions = new Structs.PositionSets();
+
 		}
 
 		private void AlwaysOnTopToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
