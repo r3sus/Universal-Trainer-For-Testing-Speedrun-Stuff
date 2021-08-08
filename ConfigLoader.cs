@@ -37,7 +37,10 @@ namespace Flying47
 				};
 				DialogResult result = fd.ShowDialog();
 				if (result == DialogResult.OK)
+				{
+					File.Copy(fd.FileName,XML_FILE_NAME,true);
 					XML_FILE_NAME = fd.FileName;
+				}
 				else
 				{
 					ProcessName = "";

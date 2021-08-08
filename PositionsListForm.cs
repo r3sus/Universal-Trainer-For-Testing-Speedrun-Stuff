@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq; // for cast
+//using System.Collections.Generic; // handy list operations
 
 namespace Flying47
 {
@@ -73,17 +75,19 @@ namespace Flying47
 
 		private void B_RemoveEntry_Click(object sender, EventArgs e)
 		{
-			var selectedCells = this.positionGrid.SelectedCells;
-			if (selectedCells.Count > 0)
+			var q = from c in positionGrid.SelectedCells.Cast<DataGridViewCell>()
+				orderby c.RowIndex descending
+				select c.RowIndex;
+
+			int[] xRows = q.Distinct().ToArray();
+
+			foreach (int rowID in xRows)
 			{
-				var firstCell = selectedCells[0];
-				var rowID = firstCell.RowIndex;
-				if (rowID < positionGrid.Rows.Count - 1)
-				{
-					positionGrid.Rows.RemoveAt(rowID);
-					ContentChanged = true;
-				}
+				if (rowID >= positionGrid.Rows.Count) continue;
+				positionGrid.Rows.RemoveAt(rowID);
+				ContentChanged = true;
 			}
+			
 		}
 
 		private void B_TeleportTo_Click(object sender, EventArgs e)

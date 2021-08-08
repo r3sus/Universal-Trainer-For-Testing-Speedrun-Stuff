@@ -60,26 +60,14 @@ namespace Flying47
 		{
 			try
 			{
-				if (GameConfigLoader.LoadFullConfig(out processName, out positionAddress, out adrSinAlpha, out isSinInverted, out adrCosAlpha, out isCosInverted, out moveAmountXYAxis, out moveAmountZAxis))
+				LoadOtherConfigToolStripMenuItem_Click(sender,e);
+				//if (processName != "")
+				if (true)
 				{
 					if (ProgramConfig.LoadFullConfig(out Structs.KeySet LoadedSet))
 						KeysSet = LoadedSet;
 					else
 						KeysSet = new Structs.KeySet();
-
-					if (File.Exists(Path.Combine("Stored Lists", processName + ".xpos")))
-					{
-						ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
-					}
-					else ListOfStoredPositions = new Structs.PositionSets();
-
-
-					if (adrSinAlpha.IsNull() || adrCosAlpha.IsNull())
-					{
-						AnglesEnabled = false;
-						KeysSet.Forward = Keys.None;
-						B_KeyForward.Enabled = false;
-					}
 
 					TTimer.Start();
 
@@ -103,6 +91,14 @@ namespace Flying47
 					};
 					RegisterKeys();
 					m_KeyboardHook.KeyPressed += GlobalHook_KeyDown;
+					
+					if (adrSinAlpha.IsNull() || adrCosAlpha.IsNull())
+					{
+						AnglesEnabled = false;
+						KeysSet.Forward = Keys.None;
+						B_KeyForward.Enabled = false;
+					}
+
 				}
 				else
 					Application.Exit();
@@ -413,7 +409,8 @@ namespace Flying47
 
 		private void LoadOtherConfigToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (GameConfigLoader.LoadFullConfig(out string processName, out PositionSet_Pointer positionAddress, out Pointer adrSinAlpha, out bool isSinInverted, out Pointer adrCosAlpha, out bool isCosInverted, out float moveAmountXYAxis, out float moveAmountZAxis, true))
+			bool x = (this.processName != "");
+			if (GameConfigLoader.LoadFullConfig(out string processName, out PositionSet_Pointer positionAddress, out Pointer adrSinAlpha, out bool isSinInverted, out Pointer adrCosAlpha, out bool isCosInverted, out float moveAmountXYAxis, out float moveAmountZAxis, x))
 			{
 				this.processName = processName;
 				this.positionAddress = positionAddress;
@@ -426,7 +423,7 @@ namespace Flying47
 				TB_MoveXYAxis.Text = moveAmountXYAxis.ToString();
 				TB_MoveZAxis.Text = moveAmountZAxis.ToString();
 			}
-			
+
 			if (File.Exists(Path.Combine("Stored Lists", processName + ".xpos")))
 			{
 				ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
