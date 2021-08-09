@@ -60,7 +60,7 @@ namespace Flying47
 		{
 			try
 			{
-				LoadOtherConfigToolStripMenuItem_Click(sender,e);
+				LoadOtherConfig();
 				//if (processName != "")
 				if (true)
 				{
@@ -399,15 +399,19 @@ namespace Flying47
 			bool tempOnTop = this.TopMost;
 			this.TopMost = false;
 			PositionsListForm posForm = new PositionsListForm(this, ListOfStoredPositions);
-			posForm.Owner = this;
-			if (cbND.Checked) {posForm.Show();} else {posForm.ShowDialog();}
+			if (cbND.Checked) {posForm.Show(this);} else {posForm.ShowDialog();}
 			posForm.Left = Left + Width;
 			posForm.Top = Top;
 			m_KeyboardHook.KeysEnabled = true;
 			this.TopMost = tempOnTop;
 		}
-
 		private void LoadOtherConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			LoadOtherConfig();
+
+		}
+
+		private void LoadOtherConfig()
 		{
 			bool x = (this.processName != "");
 			if (GameConfigLoader.LoadFullConfig(out string processName, out PositionSet_Pointer positionAddress, out Pointer adrSinAlpha, out bool isSinInverted, out Pointer adrCosAlpha, out bool isCosInverted, out float moveAmountXYAxis, out float moveAmountZAxis, x))
@@ -429,7 +433,7 @@ namespace Flying47
 				ListOfStoredPositions = Structs.PositionSets.Load(Path.Combine("Stored Lists", processName + ".xpos"));
 			}
 			else ListOfStoredPositions = new Structs.PositionSets();
-
+			label12.Text = Path.GetFileName(GameConfigLoader.LastConfig);
 		}
 
 		private void AlwaysOnTopToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

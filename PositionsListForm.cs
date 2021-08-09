@@ -18,24 +18,19 @@ namespace Flying47
 			this.parent = parent;
 			this.Positions = Positions;
 			InitializeComponent();
-			comboBox1.SelectedIndex =0;
 		}
 
+		private int l0=0, t0=0;
 		private void PositionsListForm_Move(object sender, EventArgs e)
 		{
-			
-			switch(comboBox1.SelectedItem.ToString())
+			if (ChBdock.Checked && l0*t0!=0)
 			{
-				case "Bottom":
-					parent.Left = this.Left;
-					parent.Top = this.Top - parent.Height;
-					break;
-				case "Right":
-					parent.Left = this.Left-parent.Width;
-					parent.Top = this.Top;
-					break;
+				int dl = Left - l0;
+				int dt = Top - t0;
+				parent.Left += dl;
+				parent.Top += dt;
 			}
-			
+			l0 = Left; t0 = Top;
 		}
 
 		private void PositionsListForm_Load(object sender, EventArgs e)
