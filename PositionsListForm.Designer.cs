@@ -37,6 +37,7 @@
             this.B_LoadTable = new System.Windows.Forms.Button();
             this.B_TeleportTo = new System.Windows.Forms.Button();
             this.cbSAS = new System.Windows.Forms.CheckBox();
+            this.ChBdock = new System.Windows.Forms.CheckBox();
             this.positionGrid = new System.Windows.Forms.DataGridView();
             this.PosName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.X = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +47,7 @@
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChBdock = new System.Windows.Forms.CheckBox();
+            this.btnDupe = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.positionGrid)).BeginInit();
@@ -73,26 +74,27 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.B_SaveTable, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.B_RemoveEntry, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.B_SaveTable, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.B_RemoveEntry, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.B_Add, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.B_LoadTable, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.B_TeleportTo, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.cbSAS, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.ChBdock, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.B_LoadTable, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.B_TeleportTo, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.cbSAS, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.ChBdock, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnDupe, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(459, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(114, 444);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -110,7 +112,7 @@
             // B_RemoveEntry
             // 
             this.B_RemoveEntry.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.B_RemoveEntry.Location = new System.Drawing.Point(10, 36);
+            this.B_RemoveEntry.Location = new System.Drawing.Point(10, 68);
             this.B_RemoveEntry.Name = "B_RemoveEntry";
             this.B_RemoveEntry.Size = new System.Drawing.Size(94, 23);
             this.B_RemoveEntry.TabIndex = 1;
@@ -143,7 +145,7 @@
             // B_TeleportTo
             // 
             this.B_TeleportTo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.B_TeleportTo.Location = new System.Drawing.Point(9, 69);
+            this.B_TeleportTo.Location = new System.Drawing.Point(9, 101);
             this.B_TeleportTo.Name = "B_TeleportTo";
             this.B_TeleportTo.Size = new System.Drawing.Size(95, 38);
             this.B_TeleportTo.TabIndex = 4;
@@ -159,6 +161,15 @@
             this.cbSAS.TabIndex = 5;
             this.cbSAS.Text = "Save As";
             this.cbSAS.UseVisualStyleBackColor = true;
+            // 
+            // ChBdock
+            // 
+            this.ChBdock.Location = new System.Drawing.Point(3, 147);
+            this.ChBdock.Name = "ChBdock";
+            this.ChBdock.Size = new System.Drawing.Size(108, 21);
+            this.ChBdock.TabIndex = 8;
+            this.ChBdock.Text = "Dock";
+            this.ChBdock.UseVisualStyleBackColor = true;
             // 
             // positionGrid
             // 
@@ -206,36 +217,38 @@
             this.removeToolStripMenuItem,
             this.cancelToolStripMenuItem});
             this.ContextMenu_DataGrid.Name = "ContextMenu_DataGrid";
-            this.ContextMenu_DataGrid.Size = new System.Drawing.Size(118, 70);
+            this.ContextMenu_DataGrid.Size = new System.Drawing.Size(115, 70);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.B_Add_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
-            this.removeToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.removeToolStripMenuItem.Text = "Remove";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.B_RemoveEntry_Click);
             // 
             // cancelToolStripMenuItem
             // 
             this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.cancelToolStripMenuItem.Text = "Cancel";
             // 
-            // ChBdock
+            // btnDupe
             // 
-            this.ChBdock.Location = new System.Drawing.Point(3, 115);
-            this.ChBdock.Name = "ChBdock";
-            this.ChBdock.Size = new System.Drawing.Size(108, 40);
-            this.ChBdock.TabIndex = 8;
-            this.ChBdock.Text = "Dock (move together)";
-            this.ChBdock.UseVisualStyleBackColor = true;
+            this.btnDupe.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDupe.Location = new System.Drawing.Point(21, 35);
+            this.btnDupe.Name = "btnDupe";
+            this.btnDupe.Size = new System.Drawing.Size(72, 26);
+            this.btnDupe.TabIndex = 9;
+            this.btnDupe.Text = "Duplicate";
+            this.btnDupe.UseVisualStyleBackColor = true;
+            this.btnDupe.Click += new System.EventHandler(this.btnDupe_Click);
             // 
             // PositionsListForm
             // 
@@ -276,5 +289,6 @@
         private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
         private System.Windows.Forms.CheckBox cbSAS;
         private System.Windows.Forms.CheckBox ChBdock;
+        private System.Windows.Forms.Button btnDupe;
     }
 }

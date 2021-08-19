@@ -34,7 +34,7 @@ namespace Flying47
 		//Used for storing coordinates
 		public Structs.PositionSet_Coordinates storedCoordinates = new Structs.PositionSet_Coordinates();
 
-		PositionSet_Pointer positionAddress;
+		PositionSet_Pointer positionAddress,pa1;
 		Structs.KeySet KeysSet;
 		public Structs.PositionSets ListOfStoredPositions;
 
@@ -60,9 +60,7 @@ namespace Flying47
 		{
 			try
 			{
-				LoadOtherConfig();
-				//if (processName != "")
-				if (true)
+				if (LoadOtherConfig())
 				{
 					if (ProgramConfig.LoadFullConfig(out Structs.KeySet LoadedSet))
 						KeysSet = LoadedSet;
@@ -254,18 +252,24 @@ namespace Flying47
 
 		private void SendMeForward()
 		{
-			Trainer.WritePointerFloat(myProcess, positionAddress.X, readCoordX + readSinAlpha * moveAmountXYAxis);
-			Trainer.WritePointerFloat(myProcess, positionAddress.Y, readCoordY + readCosAlpha * moveAmountXYAxis);
+			float rcx = readCoordX, rcy = readCoordY;
+			Trainer.WritePointerFloat(myProcess, positionAddress.X, rcx + readSinAlpha * moveAmountXYAxis);
+			Trainer.WritePointerFloat(myProcess, positionAddress.Y, rcy + readCosAlpha * moveAmountXYAxis);
+			if (!ds) return;
+			Trainer.WritePointerFloat(myProcess, pa1.X, rcx + readSinAlpha * moveAmountXYAxis);
+			Trainer.WritePointerFloat(myProcess, pa1.Y, rcy + readCosAlpha * moveAmountXYAxis);
 		}
 
 		private void SendMeDown()
 		{
 			Trainer.WritePointerFloat(myProcess, positionAddress.Z, readCoordZ - moveAmountZAxis);
+			if (ds) Trainer.WritePointerFloat(myProcess, pa1.Z, readCoordZ - moveAmountZAxis);
 		}
 
 		private void SendMeUp()
 		{
 			Trainer.WritePointerFloat(myProcess, positionAddress.Z, readCoordZ + moveAmountZAxis);
+			if (ds) Trainer.WritePointerFloat(myProcess, pa1.Z, readCoordZ + moveAmountZAxis);
 		}
 
 		public void Load_Position()
@@ -273,6 +277,10 @@ namespace Flying47
 			Trainer.WritePointerFloat(myProcess, positionAddress.X, storedCoordinates.X);
 			Trainer.WritePointerFloat(myProcess, positionAddress.Y, storedCoordinates.Y);
 			Trainer.WritePointerFloat(myProcess, positionAddress.Z, storedCoordinates.Z);
+			if (!ds) return;
+			Trainer.WritePointerFloat(myProcess, pa1.X, storedCoordinates.X);
+			Trainer.WritePointerFloat(myProcess, pa1.Y, storedCoordinates.Y);
+			Trainer.WritePointerFloat(myProcess, pa1.Z, storedCoordinates.Z);
 		}
 
 		private void Save_Position()
@@ -399,34 +407,40 @@ namespace Flying47
 			bool tempOnTop = this.TopMost;
 			this.TopMost = false;
 			PositionsListForm posForm = new PositionsListForm(this, ListOfStoredPositions);
-			if (cbND.Checked) {posForm.Show(this);} else {posForm.ShowDialog();}
 			posForm.Left = Left + Width;
 			posForm.Top = Top;
+			if (cbND.Checked) {posForm.Show(this);} else {posForm.ShowDialog();}
 			m_KeyboardHook.KeysEnabled = true;
 			this.TopMost = tempOnTop;
 		}
 		private void LoadOtherConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
 			LoadOtherConfig();
-
 		}
-
-		private void LoadOtherConfig()
+		public bool ds;
+		private bool LoadOtherConfig()
 		{
-			bool x = (this.processName != "");
-			if (GameConfigLoader.LoadFullConfig(out string processName, out PositionSet_Pointer positionAddress, out Pointer adrSinAlpha, out bool isSinInverted, out Pointer adrCosAlpha, out bool isCosInverted, out float moveAmountXYAxis, out float moveAmountZAxis, x))
+			bool x = this.processName != "";
+			if (!GameConfigLoader.LoadFullConfig(out string processName, out PositionSet_Pointer positionAddress, out Pointer adrSinAlpha, out bool isSinInverted, out Pointer adrCosAlpha, out bool isCosInverted, out float moveAmountXYAxis, out float moveAmountZAxis, x))
+			{return false;}
+			ds = processName.Contains("pace"); // regex?
+			if (ds)
 			{
-				this.processName = processName;
-				this.positionAddress = positionAddress;
-				this.adrSinAlpha = adrSinAlpha;
-				this.isSinInverted = isSinInverted;
-				this.adrCosAlpha = adrCosAlpha;
-				this.isCosInverted = isCosInverted;
-				this.moveAmountXYAxis = moveAmountXYAxis;
-				this.moveAmountZAxis = moveAmountZAxis;
-				TB_MoveXYAxis.Text = moveAmountXYAxis.ToString();
-				TB_MoveZAxis.Text = moveAmountZAxis.ToString();
+				var X1 = positionAddress.X; var ofs = X1.Offsets;
+				X1.Offsets[ofs.Length - 1] += 0x50;
+				pa1 = new PositionSet_Pointer(X1, 4, true);
 			}
+
+			this.processName = processName;
+			this.positionAddress = positionAddress;
+			this.adrSinAlpha = adrSinAlpha;
+			this.isSinInverted = isSinInverted;
+			this.adrCosAlpha = adrCosAlpha;
+			this.isCosInverted = isCosInverted;
+			this.moveAmountXYAxis = moveAmountXYAxis;
+			this.moveAmountZAxis = moveAmountZAxis;
+			TB_MoveXYAxis.Text = moveAmountXYAxis.ToString();
+			TB_MoveZAxis.Text = moveAmountZAxis.ToString();
 
 			if (File.Exists(Path.Combine("Stored Lists", processName + ".xpos")))
 			{
@@ -434,6 +448,7 @@ namespace Flying47
 			}
 			else ListOfStoredPositions = new Structs.PositionSets();
 			label12.Text = Path.GetFileName(GameConfigLoader.LastConfig);
+			return true;
 		}
 
 		private void AlwaysOnTopToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

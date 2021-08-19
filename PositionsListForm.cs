@@ -59,7 +59,7 @@ namespace Flying47
 			int rowID=0;
 			if (positionGrid.SelectedCells.Count>0) {
 				rowID = Math.Min(this.positionGrid.SelectedCells[0].RowIndex+1,positionGrid.RowCount-1);
-				this.positionGrid.Rows.Insert(rowID,1);
+				this.positionGrid.Rows.Insert(rowID, 1);
 			}
 			positionGrid[0, rowID].Value = "";
 			positionGrid["X", rowID].Value = parent.storedCoordinates.X.ToString("0.00");
@@ -68,21 +68,44 @@ namespace Flying47
 			ContentChanged = true;
 		}
 
-		private void B_RemoveEntry_Click(object sender, EventArgs e)
+		private int[] xRows()
 		{
 			var q = from c in positionGrid.SelectedCells.Cast<DataGridViewCell>()
-				orderby c.RowIndex descending
-				select c.RowIndex;
+					orderby c.RowIndex descending
+					select c.RowIndex;
 
-			int[] xRows = q.Distinct().ToArray();
+			return q.Distinct().ToArray();
+		}
 
-			foreach (int rowID in xRows)
+		public DataGridViewRow CloneWithValues(DataGridViewRow row)
+		{
+			DataGridViewRow clonedRow = (DataGridViewRow)row.Clone();
+			for (Int32 index = 0; index < row.Cells.Count; index++)
+			{
+				clonedRow.Cells[index].Value = row.Cells[index].Value;
+			}
+			return clonedRow;
+		}
+
+		private void btnDupe_Click(object sender, EventArgs e)
+		{
+			foreach (int rowID in xRows())
+			{
+				if (rowID >= positionGrid.Rows.Count) continue;
+				var dr = CloneWithValues(positionGrid.Rows[rowID]);
+				positionGrid.Rows.Insert(rowID+1, dr);
+				ContentChanged = true;
+			}
+		}
+
+		private void B_RemoveEntry_Click(object sender, EventArgs e)
+		{
+			foreach (int rowID in xRows())
 			{
 				if (rowID >= positionGrid.Rows.Count) continue;
 				positionGrid.Rows.RemoveAt(rowID);
 				ContentChanged = true;
 			}
-			
 		}
 
 		private void B_TeleportTo_Click(object sender, EventArgs e)
@@ -234,7 +257,7 @@ namespace Flying47
 			parent.m_KeyboardHook.KeysEnabled = false;
 		}
 
-		private void PositionGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void PositionGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 		{
 			parent.m_KeyboardHook.KeysEnabled = true;
 		}
